@@ -30,6 +30,7 @@ export default function HypnosHero({
   logo = "hypnos",
   navItems = [
     { label: "Plataforma", href: "/plataforma" },
+    { label: "Gallery", href: "/gallery" },
     { label: "Nosotros", href: "/nosotros" },
     { label: "Tecnología", href: "/tecnologia" },
     { label: "Recursos", href: "/recursos" },

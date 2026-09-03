@@ -35,6 +35,11 @@ export default function HypnosFooter() {
               </Link>
             </li>
             <li>
+              <Link href="/gallery" className="text-[#a1a1aa] hover:text-white text-sm transition-colors font-light">
+                Gallery
+              </Link>
+            </li>
+            <li>
               <Link href="/nosotros" className="text-[#a1a1aa] hover:text-white text-sm transition-colors font-light">
                 Nosotros
               </Link>
