@@ -1,10 +1,13 @@
 // src/components/HypnosHero.tsx
 "use client";
 
-import { motion } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
+
+const spring = { type: "spring", stiffness: 300, damping: 30 } as const;
 
 interface NavItem {
   label: string;
@@ -46,6 +49,8 @@ export default function HypnosHero({
   onCtaClick,
   onLanguageChange,
 }: HypnosHeroProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <section className="relative w-full min-h-screen bg-[#09090b] text-[#f4f4f5] overflow-hidden flex flex-col justify-between selection:bg-white/20">
       {/* Hero background image */}
@@ -118,8 +123,62 @@ export default function HypnosHero({
             >
               {contactLabel}
             </Link>
+
+            {/* Burger toggle — mobile only */}
+            <button
+              type="button"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-label={menuOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={menuOpen}
+              className="md:hidden flex items-center justify-center w-11 h-11 -mr-2 text-white"
+            >
+              {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile menu — burger panel */}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              key="mobile-menu"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={spring}
+              className="md:hidden overflow-hidden"
+            >
+              <div className="max-w-7xl mx-auto flex flex-col gap-1 pt-4 pb-2">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="min-h-[44px] flex items-center text-[#a1a1aa] text-base hover:text-white transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+
+                <div className="flex items-center gap-4 pt-4 mt-2 border-t border-white/[0.08]">
+                  {languageOptions.map((lang) => (
+                    <button
+                      key={lang}
+                      onClick={() => onLanguageChange?.(lang)}
+                      className={`min-h-[44px] text-xs tracking-wider transition-colors ${
+                        lang === currentLanguage
+                          ? "text-white font-medium"
+                          : "text-[#a1a1aa] hover:text-white"
+                      }`}
+                    >
+                      {lang}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
 
       {/* Main Hero Content */}
