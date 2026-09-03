@@ -2,6 +2,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -46,6 +47,18 @@ export default function HypnosHero({
 }: HypnosHeroProps) {
   return (
     <section className="relative w-full min-h-screen bg-[#09090b] text-[#f4f4f5] overflow-hidden flex flex-col justify-between selection:bg-white/20">
+      {/* Hero background image */}
+      <Image
+        src="/images/eq_hero.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center pointer-events-none select-none"
+      />
+      {/* Legibility overlay — keeps text at design-system contrast */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#09090b]/85 via-[#09090b]/60 to-[#09090b] pointer-events-none" />
+
       {/* Subtle background glow mimicking Apple high-end minimalism */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-white/[0.03] to-transparent rounded-full blur-3xl pointer-events-none" />
 
