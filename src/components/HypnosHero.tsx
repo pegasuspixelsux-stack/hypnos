@@ -54,7 +54,7 @@ export default function HypnosHero({
         fill
         priority
         sizes="100vw"
-        className="object-cover object-center pointer-events-none select-none"
+        className="object-cover object-[70%_50%] pointer-events-none select-none"
       />
       {/* Legibility overlay — keeps text at design-system contrast */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#09090b]/85 via-[#09090b]/60 to-[#09090b] pointer-events-none" />
