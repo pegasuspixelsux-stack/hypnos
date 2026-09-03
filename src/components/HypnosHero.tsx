@@ -57,7 +57,7 @@ export default function HypnosHero({
         className="object-cover object-[70%_50%] pointer-events-none select-none"
       />
       {/* Legibility overlay — keeps text at design-system contrast */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#09090b]/65 via-[#09090b]/40 to-[#09090b]/80 pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-[#09090b]/30 to-[#09090b] md:from-[#09090b]/65 md:via-[#09090b]/40 md:to-[#09090b]/80" />
 
       {/* Subtle background glow mimicking Apple high-end minimalism */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-white/[0.03] to-transparent rounded-full blur-3xl pointer-events-none" />
